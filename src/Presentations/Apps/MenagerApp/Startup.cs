@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Linq;
 using System.Reflection;
 
@@ -37,19 +36,13 @@ namespace MenagerApp
             var referncedAssembly = typeof(Program).Assembly.GetReferencedAssemblies().Select(Assembly.Load).ToArray();
             services.AddDomainMessageHandler(referncedAssembly);
 
-            var messageHandlerConfig = new MessageHandlerConfig
-            {
-                SelectedIndex = int.Parse(Environment.GetEnvironmentVariable(""))
-            };
+            var messageHandlerConfig = Configuration.GetSection("MessageBrokerConfig").Get<MessageHandlerConfig>();
             var messageHandlerOption = messageHandlerConfig.SelectedMessageHandlerOption();
             services.AddIntegrationMessageHandler(messageHandlerOption, typeof(Program).Assembly);
 
-            //var sqlDbConfig = new SqlDbConfig
-            //{
-            //    SelectIndex = int.Parse(Environment.GetEnvironmentVariable(""))
-            //};
-            //var sqlDbOption = sqlDbConfig.SelectedDbOption();
-            //services.AddDbCashierContext(sqlDbOption);
+            var sqlDbConfig = Configuration.GetSection("SqlDbConfig").Get<SqlDbConfig>();
+            var sqlDbOption = sqlDbConfig.SelectedDbOption();
+            services.AddDbCashierContext(sqlDbOption);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

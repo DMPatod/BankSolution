@@ -2,7 +2,7 @@
 
 namespace CashierManagementInfractureLayer.DatabaseContext
 {
-    class EntityDbContext : DbContext
+    public class EntityDbContext : DbContext
     {
         public EntityDbContext(DbContextOptions<EntityDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

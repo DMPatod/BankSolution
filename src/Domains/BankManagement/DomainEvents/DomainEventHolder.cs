@@ -12,7 +12,7 @@ namespace CashierManagement.DomainEvents
         {
             domainEvents.Enqueue(domainEvent);
         }
-        protected bool TryRemoveDomainEvent(out IDomainEvent domainEvent)
+        public bool TryRemoveDomainEvent(out IDomainEvent domainEvent)
         {
             return domainEvents.TryDequeue(out domainEvent);
         }

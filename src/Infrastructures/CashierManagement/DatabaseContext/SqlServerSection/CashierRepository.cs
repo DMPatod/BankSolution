@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CashierManagementInfractureLayer.DatabaseContext.SqlServerSection
 {
-    class CashierRepository : ICashierRepository
+    public class CashierRepository : ICashierRepository
     {
         private readonly EntityDbContext dbContext;
         public CashierRepository(EntityDbContext dbContext)

@@ -32,12 +32,12 @@ namespace CashierManagementInfractureLayer.IntegrationMessages.ConfigModels
         public MessageHandlerTypes HandlerType { get; set; }
         public string HandlerName { get; set; }
         public string HostName { get; set; }
-        public string VirtualHost { get; set; }
         public int Port { get; set; }
+        public string VirtualHost { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
     }
-    public public enum MessageHandlerTypes
+    public enum MessageHandlerTypes
     {
         RabbitMq = 1
     }

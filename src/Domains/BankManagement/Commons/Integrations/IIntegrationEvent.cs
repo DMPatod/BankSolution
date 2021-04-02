@@ -1,6 +1,6 @@
 ﻿namespace CashierManagement.Commons.Integrations
 {
-    interface IIntegrationEvent : IIntegrationMessage
+    public interface IIntegrationEvent : IIntegrationMessage
     {
     }
 }

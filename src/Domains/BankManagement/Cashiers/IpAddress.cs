@@ -1,4 +1,4 @@
-﻿using CashierManagement.Common;
+﻿using CashierManagement.Commons;
 using System;
 
 namespace CashierManagement.Cashiers

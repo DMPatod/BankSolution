@@ -7,7 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,16 +18,34 @@ namespace CashierManagementInfractureLayer.IntegrationMessages
 {
     public class IntegrationMessageHandler : IIntegrationMessageHandler
     {
-        public IReadOnlyCollection<IIntegrationMessage> IntegrationMessages => throw new System.NotImplementedException();
-
+        private readonly IBusControl busControl;
+        private readonly ConcurrentQueue<IIntegrationMessage> integrationMessagesQueue;
+        public IntegrationMessageHandler(IBusControl busControl)
+        {
+            this.busControl = busControl;
+            integrationMessagesQueue = new ConcurrentQueue<IIntegrationMessage>();
+        }
+        public IReadOnlyCollection<IIntegrationMessage> IntegrationMessages => integrationMessagesQueue.ToList().AsReadOnly();
         public void Add<T>(T message) where T : IIntegrationMessage
         {
-            throw new System.NotImplementedException();
+            integrationMessagesQueue.Enqueue(message);
         }
-
-        public Task DistributeAsync(CancellationToken cancellationToken = default)
+        public async Task DistributeAsync(CancellationToken cancellationToken = default)
         {
-            throw new System.NotImplementedException();
+            while (integrationMessagesQueue.TryDequeue(out var result))
+            {
+                switch (result)
+                {
+                    case IIntegrationEvent _:
+                        await busControl.Publish(result, result.GetType(), cancellationToken);
+                        break;
+                    case IIntegrationCommand _:
+                        await busControl.Send(result, result.GetType(), cancellationToken);
+                        break;
+                    default:
+                        throw new ArgumentException($"{result.GetType()} is not expected type");
+                }
+            }
         }
     }
     public static class IntegrationMessageHandlerDIExtension
@@ -70,7 +90,36 @@ namespace CashierManagementInfractureLayer.IntegrationMessages
             services.AddSingleton<IPublishObserver, BasicPublishObservers>();
 
             services.AddMassTransitHostedService();
-            services.AddMassTransist();
+            services.AddMassTransit(busConfigurator =>
+            {
+                busConfigurator.AddConsumers(assemblies);
+                busConfigurator.AddBus(provider =>
+                {
+                    IBusControl busControl = default;
+                    switch (option.HandlerType)
+                    {
+                        case MessageHandlerTypes.RabbitMq:
+                            busControl = Bus.Factory.CreateUsingRabbitMq(cfg =>
+                            {
+                                cfg.Host($"{option.HostName}", option.VirtualHost, hst =>
+                                {
+                                    hst.Username(option.UserName);
+                                    hst.Password(option.Password);
+                                    hst.UseCluster(clusterCfg =>
+                                    {
+                                        clusterCfg.Node($"{option.HostName}:{option.Port}");
+                                    });
+                                });
+                                ConfigureBusFactory(cfg, provider);
+                                cfg.ConfigureEndpoints(provider);
+                            });
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                    return busControl;
+                });
+            });
 
             services.TryAddScoped<IIntegrationMessageHandler, IntegrationMessageHandler>();
             return services;
