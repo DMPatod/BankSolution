@@ -30,6 +30,7 @@ namespace CashierManagementInfractureLayer.DatabaseContext.SqlServerSection
                     await messageHandler.PublishAsync(domainEvent, cancellationToken);
                 }
             }
+            await dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

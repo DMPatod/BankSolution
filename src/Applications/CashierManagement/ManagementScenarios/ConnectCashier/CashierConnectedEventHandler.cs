@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CashierManagementApplicationLayer.ConnectCashier.ManagementScenarios
+namespace CashierManagementApplicationLayer.ManagementScenarios.ConnectCashier
 {
     public class CashierConnectedEventHandler : IDomainEventHandler<CashierConnectedIntegrationEvent>
     {

@@ -10,5 +10,6 @@ namespace CashierManagementInfractureLayer.DatabaseContext
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(EntityDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }

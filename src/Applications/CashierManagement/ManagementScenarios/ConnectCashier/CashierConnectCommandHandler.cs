@@ -1,6 +1,5 @@
 ﻿using CashierManagement.Cashiers;
 using CashierManagement.DomainEvents;
-using CashierManagementApplicationLayer.ConnectCashier.ManagementScenarios;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

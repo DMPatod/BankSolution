@@ -1,4 +1,6 @@
 ﻿using CashierManagement.Cashiers;
+using CashierManagement.Commons.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,19 +15,24 @@ namespace CashierManagementInfractureLayer.DatabaseContext.SqlServerSection
             this.dbContext = dbContext;
         }
 
-        public Task<Cashier> AddAsync(Cashier cashier, CancellationToken cancellationToken)
+        public async Task<Cashier> AddAsync(Cashier cashier, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Cashier> GetAsync(IpAddress address, CancellationToken cancellationToken)
+        public async Task<Cashier> GetAsync(IpAddress address, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Cashier> GetAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<Cashier> GetAsync(Guid id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var cashier = await dbContext.Set<Cashier>().FirstOrDefaultAsync(ent => ent.Id == id, cancellationToken);
+            if (cashier == null)
+            {
+                throw new NotFoundException<Cashier>();
+            }
+            return cashier;
         }
     }
 }

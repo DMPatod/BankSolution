@@ -2,7 +2,7 @@
 using CashierManagement.Commons.Integrations;
 using CashierManagement.DomainEvents;
 
-namespace CashierManagementApplicationLayer.ConnectCashier.ManagementScenarios
+namespace CashierManagementApplicationLayer.ManagementScenarios.ConnectCashier
 {
     public class CashierConnectedIntegrationEvent : IDomainEvent
     {

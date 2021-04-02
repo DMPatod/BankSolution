@@ -1,8 +1,10 @@
 ﻿using CashierManagement.Cashiers;
 using CashierManagement.DomainEvents;
 using CashierManagementApplicationLayer.ConnectCashier.ManagementScenarios;
+using CashierManagementApplicationLayer.ManagementScenarios.GetCashier;
 using CashierManagementInfractureLayer.DatabaseContext.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,12 +13,19 @@ namespace MenagerApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CachierController : ControllerBase
+    public class CashierController : ControllerBase
     {
         private readonly IDomainMessageHandler messageHandler;
-        public CachierController(IDomainMessageHandler messageHandler)
+        public CashierController(IDomainMessageHandler messageHandler)
         {
             this.messageHandler = messageHandler;
+        }
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery] Guid guid)
+        {
+            var getCommand = new CashierGetCommand(guid);
+            var cashier = await messageHandler.SendAsync(getCommand, CancellationToken.None);
+            return StatusCode((int)HttpStatusCode.OK, cashier);
         }
         [HttpPost]
         public async Task<IActionResult> Connect([FromForm] CashierDTO cashierDTO)

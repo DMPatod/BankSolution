@@ -2,7 +2,7 @@
 using CashierManagement.DomainEvents;
 using System;
 
-namespace CashierManagementApplicationLayer.ConnectCashier.ManagementScenarios
+namespace CashierManagementApplicationLayer.ManagementScenarios.ConnectCashier
 {
     public class CashierConnectCommand : ICommand<Guid>
     {
