@@ -6,10 +6,14 @@ namespace CashierManagement.Cashiers
 {
     public class Cashier : Aggregate
     {
-        public Guid Id { get; private set; } = default;
+        public int Id { get; set; }
+        public Guid Guid { get; private set; } = default;
         public IpAddress Address { get; set; }
         public decimal StoredAmount { get; set; }
-        public DateTime StartedOn { get; protected set; }
+        public Cashier()
+        {
+            // Only for EF
+        }
         public Cashier(IpAddress address, decimal inputedAmount)
         {
             Address = address;

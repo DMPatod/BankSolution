@@ -1,22 +1,27 @@
-﻿using FluentMigrator;
+﻿using CashierManagementInfractureLayer.DatabaseContext.ConfigModels;
+using FluentMigrator;
 
 namespace CashierManagementInfractureLayer.DatabaseContext.Migrations.SqlServerData
 {
     [Migration(20210401)]
-    class CreateTableCashier : Migration
+    [Tags(nameof(SqlDbTypes.SqlServer))]
+    public class CreateTableCashier : Migration
     {
         public override void Down()
         {
-            Delete.Table("Cashier");
+            Delete.Table("Cashier")
+                .InSchema("dbo");
         }
 
         public override void Up()
         {
             Create.Table("Cashier")
-                .WithColumn("Id").AsGuid().PrimaryKey().Identity()
-                .WithColumn("Address").AsString("50").NotNullable()
+                .InSchema("dbo")
+                .WithIdColumn()
+                .WithColumn("Guid").AsGuid().NotNullable().WithDefault(SystemMethods.NewGuid)
+                .WithColumn("Address").AsString(50).NotNullable()
                 .WithColumn("StoredAmount").AsDecimal().NotNullable()
-                .WithColumn("ConnectedWhen").AsDateTime2().NotNullable();
+                .WithTimeStamps();
         }
     }
 }

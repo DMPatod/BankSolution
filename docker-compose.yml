@@ -1,0 +1,32 @@
+version: "3.4"
+
+services:
+  menagerapp:
+    image: ${DOCKER_REGISTRY-}menagerapp
+    build:
+      context: .
+      dockerfile: src/Presentations/Apps/MenagerApp/Dockerfile
+    ports:
+      - 8080:80
+    depends_on:
+      - rabbitmq
+      - sql-server
+    links:
+      - rabbitmq
+      - sql-server
+
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "!Passw0rd"
+    expose:
+      - 1433
+    ports:
+      - 9998:1433
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    expose:
+      - 15672
+      - 5672

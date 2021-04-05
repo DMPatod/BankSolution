@@ -13,7 +13,7 @@ namespace CashierManagementApplicationLayer.ManagementScenarios.ConnectCashier
         {
             this.dbContext = dbContext;
         }
-        public async Task<Guid> Handle(CashierConnectCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CashierConnectCommand request, CancellationToken cancellationToken)
         {
             var cashier = Cashier.Create(request.Address, 10.0m, cancellationToken);
 

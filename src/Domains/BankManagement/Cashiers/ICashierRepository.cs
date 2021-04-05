@@ -8,6 +8,6 @@ namespace CashierManagement.Cashiers
     {
         Task<Cashier> AddAsync(Cashier cashier, CancellationToken cancellationToken);
         Task<Cashier> GetAsync(IpAddress address, CancellationToken cancellationToken);
-        Task<Cashier> GetAsync(Guid id, CancellationToken cancellationToken);
+        Task<Cashier> GetAsync(int id, CancellationToken cancellationToken);
     }
 }

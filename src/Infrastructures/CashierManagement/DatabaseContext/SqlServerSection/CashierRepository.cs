@@ -17,7 +17,9 @@ namespace CashierManagementInfractureLayer.DatabaseContext.SqlServerSection
 
         public async Task<Cashier> AddAsync(Cashier cashier, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cashier.ModifiedAt = DateTime.Now;
+            var obj = await dbContext.AddAsync(cashier, cancellationToken);
+            return obj.Entity;
         }
 
         public async Task<Cashier> GetAsync(IpAddress address, CancellationToken cancellationToken)
@@ -25,7 +27,7 @@ namespace CashierManagementInfractureLayer.DatabaseContext.SqlServerSection
             throw new NotImplementedException();
         }
 
-        public async Task<Cashier> GetAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<Cashier> GetAsync(int id, CancellationToken cancellationToken)
         {
             var cashier = await dbContext.Set<Cashier>().FirstOrDefaultAsync(ent => ent.Id == id, cancellationToken);
             if (cashier == null)

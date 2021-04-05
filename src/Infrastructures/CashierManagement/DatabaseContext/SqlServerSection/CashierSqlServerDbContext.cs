@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CashierManagementInfractureLayer.DatabaseContext.SqlServerSection
 {
-    class CachierSqlServerDbContext : ICachierDbContext
+    class CashierSqlServerDbContext : ICachierDbContext
     {
         private readonly EntityDbContext dbContext;
         private readonly IDomainMessageHandler messageHandler;
-        public CachierSqlServerDbContext(EntityDbContext entityDbContext, IDomainMessageHandler messageHandler)
+        public CashierSqlServerDbContext(EntityDbContext entityDbContext, IDomainMessageHandler messageHandler)
         {
             dbContext = entityDbContext;
             this.messageHandler = messageHandler;

@@ -1,6 +1,6 @@
 ﻿using CashierManagement.Cashiers;
 using CashierManagement.DomainEvents;
-using CashierManagementApplicationLayer.ConnectCashier.ManagementScenarios;
+using CashierManagementApplicationLayer.ManagementScenarios.ConnectCashier;
 using CashierManagementApplicationLayer.ManagementScenarios.GetCashier;
 using CashierManagementInfractureLayer.DatabaseContext.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -21,16 +21,18 @@ namespace MenagerApp.Controllers
             this.messageHandler = messageHandler;
         }
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] Guid guid)
+        public async Task<IActionResult> Get([FromQuery] int id)
         {
-            var getCommand = new CashierGetCommand(guid);
+            var getCommand = new CashierGetCommand(id);
             var cashier = await messageHandler.SendAsync(getCommand, CancellationToken.None);
             return StatusCode((int)HttpStatusCode.OK, cashier);
         }
         [HttpPost]
         public async Task<IActionResult> Connect([FromForm] CashierDTO cashierDTO)
         {
-            var connectCommand = new CashierConnectCommand(new IpAddress(cashierDTO.Address), cashierDTO?.StoredAmount ?? 0.0m);
+            var address = new IpAddress(cashierDTO.Ip, cashierDTO.Port);
+
+            var connectCommand = new CashierConnectCommand(address, cashierDTO.StoredAmount);
             var cachierId = await messageHandler.SendAsync(connectCommand, CancellationToken.None);
             return StatusCode((int)HttpStatusCode.Created, cachierId);
         }

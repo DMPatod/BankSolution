@@ -1,6 +1,8 @@
-﻿namespace CashierManagement.DomainEvents
+﻿using MediatR;
+
+namespace CashierManagement.DomainEvents
 {
-    public interface IDomainEvent
+    public interface IDomainEvent : INotification
     {
     }
 }

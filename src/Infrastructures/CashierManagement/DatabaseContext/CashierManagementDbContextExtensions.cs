@@ -17,8 +17,8 @@ namespace CashierManagementInfractureLayer.DatabaseContext
             {
                 case SqlDbTypes.SqlServer:
                     services.AddScoped<IDbMigrationEngine, SqlServerDbMigrationEngine>();
-                    services.AddDbContext<EntityDbContext>(builder => builder.UseSqlServer());
-                    services.AddScoped<ICachierDbContext, CachierSqlServerDbContext>();
+                    services.AddDbContext<EntityDbContext>(builder => builder.UseSqlServer(sqlDbOption.ConnectionString));
+                    services.AddScoped<ICachierDbContext, CashierSqlServerDbContext>();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

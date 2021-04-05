@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace CashierManagementApplicationLayer.ManagementScenarios.ConnectCashier
 {
-    class CashierConnectCommandHandler : ICommandHandler<CashierConnectCommand, Guid>
+    class CashierConnectCommandHandler : ICommandHandler<CashierConnectCommand, int>
     {
         private readonly ICachierDbContext dbContext;
         public CashierConnectCommandHandler(ICachierDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
-        public async Task<Guid> Handle(CashierConnectCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CashierConnectCommand request, CancellationToken cancellationToken)
         {
             var cachier = Cashier.Create(request.Address, request.InitialAmount, cancellationToken);
 
