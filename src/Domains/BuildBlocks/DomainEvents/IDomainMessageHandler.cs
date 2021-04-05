@@ -1,7 +1,8 @@
-﻿using System.Threading;
+﻿using BuildBlocks.Commons;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace CashierManagement.DomainEvents
+namespace BuildBlocks.DomainEvents
 {
     public interface IDomainMessageHandler
     {

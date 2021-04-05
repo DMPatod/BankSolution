@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domains\BuildBlocks\BuildBlocks.csproj" />
+    <ProjectReference Include="..\..\Domains\MoneyMenagement\MoneyMenagement.csproj" />
+  </ItemGroup>
+
+</Project>

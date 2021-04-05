@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CashierManagement.DomainEvents
+namespace BuildBlocks.DomainEvents
 {
     public abstract class DomainEventHolder
     {

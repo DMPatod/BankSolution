@@ -1,5 +1,5 @@
-﻿using CashierManagement.Cashiers;
-using CashierManagement.DomainEvents;
+﻿using BuildBlocks.DomainEvents;
+using CashierManagement.Cashiers;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;

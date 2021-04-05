@@ -1,4 +1,4 @@
-﻿using CashierManagement.Commons;
+﻿using BuildBlocks.Commons;
 using System;
 
 namespace CashierManagement.Cashiers

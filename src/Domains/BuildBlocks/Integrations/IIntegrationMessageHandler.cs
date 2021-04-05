@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CashierManagement.Commons.Integrations
+namespace BuildBlocks.Integrations
 {
     public interface IIntegrationMessageHandler
     {

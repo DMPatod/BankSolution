@@ -1,5 +1,5 @@
-﻿using CashierManagement.Cashiers;
-using CashierManagement.Commons.Exceptions;
+﻿using BuildBlocks.Commons.Exceptions;
+using CashierManagement.Cashiers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;

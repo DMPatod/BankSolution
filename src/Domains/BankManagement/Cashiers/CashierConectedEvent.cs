@@ -1,4 +1,4 @@
-﻿using CashierManagement.DomainEvents;
+﻿using BuildBlocks.DomainEvents;
 
 namespace CashierManagement.Cashiers
 {

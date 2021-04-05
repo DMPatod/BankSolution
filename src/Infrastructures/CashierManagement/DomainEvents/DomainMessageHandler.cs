@@ -1,4 +1,5 @@
-﻿using CashierManagement.DomainEvents;
+﻿using BuildBlocks.Commons;
+using BuildBlocks.DomainEvents;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;

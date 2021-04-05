@@ -1,10 +1,9 @@
-﻿using CashierManagement.Cashiers;
-using CashierManagement.DomainEvents;
+﻿using BuildBlocks.DomainEvents;
+using CashierManagement.Cashiers;
 using CashierManagementApplicationLayer.ManagementScenarios.ConnectCashier;
 using CashierManagementApplicationLayer.ManagementScenarios.GetCashier;
 using CashierManagementInfractureLayer.DatabaseContext.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;

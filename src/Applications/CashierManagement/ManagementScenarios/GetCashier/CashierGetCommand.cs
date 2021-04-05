@@ -1,6 +1,5 @@
-﻿using CashierManagement.Cashiers;
-using CashierManagement.DomainEvents;
-using System;
+﻿using BuildBlocks.Commons;
+using CashierManagement.Cashiers;
 
 namespace CashierManagementApplicationLayer.ManagementScenarios.GetCashier
 {

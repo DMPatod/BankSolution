@@ -1,7 +1,7 @@
-﻿using CashierManagement.DomainEvents;
+﻿using BuildBlocks.DomainEvents;
 using System;
 
-namespace CashierManagement.Commons
+namespace BuildBlocks.Commons
 {
     public class Aggregate : DomainEventHolder
     {

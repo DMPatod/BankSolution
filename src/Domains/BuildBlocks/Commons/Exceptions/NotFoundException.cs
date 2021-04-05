@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CashierManagement.Commons.Exceptions
+namespace BuildBlocks.Commons.Exceptions
 {
     public abstract class NotFoundException : Exception
     {
@@ -8,7 +8,6 @@ namespace CashierManagement.Commons.Exceptions
         {
         }
     }
-
     public class NotFoundException<T> : NotFoundException
     {
         public NotFoundException() : base($"{typeof(T).Name} could not found")

@@ -1,4 +1,4 @@
-﻿using CashierManagement.Commons.Integrations;
+﻿using BuildBlocks.Integrations;
 using CashierManagementInfractureLayer.IntegrationMessages.ConfigModels;
 using CashierManagementInfractureLayer.IntegrationMessages.MassTrasitSection;
 using GreenPipes;

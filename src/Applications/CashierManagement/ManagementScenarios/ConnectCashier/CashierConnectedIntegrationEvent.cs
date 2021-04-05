@@ -1,6 +1,5 @@
-﻿using CashierManagement.Cashiers;
-using CashierManagement.Commons.Integrations;
-using CashierManagement.DomainEvents;
+﻿using BuildBlocks.DomainEvents;
+using CashierManagement.Cashiers;
 
 namespace CashierManagementApplicationLayer.ManagementScenarios.ConnectCashier
 {

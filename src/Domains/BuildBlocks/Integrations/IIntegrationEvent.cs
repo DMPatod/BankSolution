@@ -1,4 +1,4 @@
-﻿namespace CashierManagement.Commons.Integrations
+﻿namespace BuildBlocks.Integrations
 {
     public interface IIntegrationEvent : IIntegrationMessage
     {
