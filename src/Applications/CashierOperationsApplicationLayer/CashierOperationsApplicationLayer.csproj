@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domains\BankManagement\CashierManagement.csproj" />
-    <ProjectReference Include="..\..\Domains\BuildBlocks\BuildBlocks.csproj" />
+    <ProjectReference Include="..\..\Domains\BuildBlocks\BuildBlocks.Domain.csproj" />
     <ProjectReference Include="..\..\Domains\MoneyMenagement\MoneyMenagement.csproj" />
   </ItemGroup>
 

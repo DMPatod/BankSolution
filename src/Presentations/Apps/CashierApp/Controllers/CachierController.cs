@@ -6,6 +6,5 @@ namespace CashierApp.Controllers
     [ApiController]
     public class CachierController : ControllerBase
     {
-
     }
 }
